@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using BakeryApi.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<BakeryApiContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BakeryApiContext") ?? throw new InvalidOperationException("Connection string 'BakeryApiContext' not found.")));
 
 // Add services to the container.
 
